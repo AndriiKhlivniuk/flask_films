@@ -1,0 +1,94 @@
+{%extends 'base.html'%}
+
+{%block head%}
+
+{%endblock%}
+
+{%block body%}
+
+{{ msg }}
+
+                    <!-- ADD -->
+<h2>Add Film</h2>
+
+<form action="/"  method="POST">
+
+
+  <label for="name">Name: </label>
+    <input required type="text" id="name" name="name"><br>
+
+  <label for="year">Year: </label>
+    <input required type="text" id="year" name="year"><br>
+
+  <label for="format">Format:</label>
+    <select name="format" id="format">
+      <option value="VHS">VHS</option>
+      <option value="DVD">DVD</option>
+      <option value="Blu-Ray">Blu-Ray</option>
+    </select><br>
+
+  <label for="actor">Actors list (“Name and Second Name”): </label>
+    <input required type="text" id="actor" name="actor"><br>
+  
+  <input type="submit" value="Submit" >
+
+
+</form>
+                      <!-- DELETE -->
+<br>
+<h2>Delete Film</h2>
+<form action='/delete' method='post'>
+  <label for='todelete'>Films:</label>
+  <select name='todelete' id='todelete'>";
+
+  
+    {% for post in posts %}
+      <option value='{{ post["id"] }}'>{{ post['name'] }}</option>
+    {% endfor %}
+
+     </select>
+     <br>
+     <br>
+
+<input type='submit' value='Submit'>
+</form>
+
+                        <!-- INFO -->
+<br>
+<h2>Info about the film</h2>
+<form action='/info' method='post'>
+
+  <label for='inform'>Films:</label>
+  <select name='inform' id='inform'>
+
+    {% for post in posts %}
+      <option value='{{ post["id"] }}'>{{ post['name'] }}</option>
+    {% endfor %}
+  </select><br>
+  <br>
+  <input type='submit' value='Submit'>
+</form>
+
+                    <!-- ACTOR SEARCH -->
+<br>
+<h2>Search films by actor</h2>
+<form action='/search'  method="post">
+
+  <label for="namesearch">Enter actor name: </label>
+    <input required type="text" id="actorsearch" name="actorsearch"><br>
+  <input type="submit" value="Submit">
+</form>
+
+
+                      <!-- FILE -->
+<h2>Add films from file</h2>
+
+<form action="/file" method="post" enctype="multipart/form-data">
+  <input required type="file" name="file" id="fiile">
+  <input type="submit" value="Add" name="submit">
+</form>
+
+
+{%endblock%}
+
+
